@@ -1,10 +1,10 @@
 # Context
 
-In many applications, there is a need to differentiate between public routes and protected routes, which require authentication. This repository provides a solution to simplify testing of protected routes by automating the authentication process.
+In many applications, there's is a differentiation between public routes and protected routes, with protected routes requiring authentication before each request, which can be annoying to test during development. This repository provides a solution to simplify testing of protected routes by automating the authentication process on Postman.
 
-The repository consists of two key scripts: collection-script and directory-script.
+The repository consists of two key scripts: `collection-script` and `directory-script`.
 
-The collection-script is designed to be inserted in the pre-request script section of Postman collection, where it runs before each request within a collection. It intelligently identifies public routes using regular expressions and skips the function invocation in such cases.
+The collection-script is designed to be inserted in the pre-request script section of Postman collection, where it runs before each request within a collection. It intelligently identifies public routes using regular expressions (assuming the word "public" is present in the url to differentiate between routes) and skips the function invocation in such cases.
 
 ```js
 const requestRoute = pm.request.url.getPath();
@@ -29,7 +29,7 @@ In order to avoid running both scripts, the external hosts are placed in environ
 
 ```js
 const externalAPIHosts = [
-  "{{External-API-1",
+  "{{External-API-1}}",
   "{{External-API-2}}",
   "{{External-API-3}}",
 ];
