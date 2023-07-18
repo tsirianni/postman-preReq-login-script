@@ -17,6 +17,14 @@ if (!isPublicRoute) {
 
 The directory-script is intended for requests made to external APIs. It specifically caters to scenarios where a separate script is needed for authenticating with an external API. For example, let's consider a petShop API with a login route that returns an authorization token, and a special offers route that requires the token to be sent in the header. The directory-script handles the authentication process by sending an HTTP request to the login route and setting the Authorization header with the returned token.
 
+```js
+getAuthorizationToken()
+  .then((token) => {
+    pm.request.headers.add(`Authorization: ${token}`);
+  })
+  .catch((error) => console.log(error));
+```
+
 In order to avoid running both scripts, the external hosts are placed in environment variables and verified at the beginning of the collection script. If it is identified that the request is being made to an external API, the invocation of the login function is skipped and the next script to be executed is the directory-script.
 
 ```js
