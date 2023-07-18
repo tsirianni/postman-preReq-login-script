@@ -24,7 +24,7 @@ const getAuthorizationToken = () => {
 
       console.log("Authorization Token successfully retrieved!");
       const responseBody = response.json();
-      resolve(responseBody.objetoResposta);
+      resolve(responseBody.accessToken);
     });
   });
 };
